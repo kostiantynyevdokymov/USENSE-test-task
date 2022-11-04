@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <div class="container">
+    <h1 class="header-title">Exchange rate</h1>
+  </div>
+  <div class="header-currency">
+    <div class="currency">
+      <div class="euro"><img src="" alt="eu" /></div>
+      <div *ngIf="eur" class="euro-currency">
+        <div class="euro-buy"><span class="buy">Buy:</span>{{eur.buy}}</div>
+        <div class="euro-sale"><span class="sell">Sale:</span>{{eur.sale}}</div>
+      </div>
+    </div>
+    <div class="currency">
+      <div class="dollar"><img src="" alt="usd" /></div>
+      <div *ngIf="usd" class="dollar-currency">
+        <div class="dollar-buy"><span class="buy">Buy:</span>{{usd.buy}}</div>
+        <div class="dollar-sale"><span class="sell">Sale:</span>{{usd.sale}}</div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
