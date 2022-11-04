@@ -1,0 +1,22 @@
+.container-converter {
+  color: black;
+  max-width: 1200px;
+  padding: 10px;
+  margin: 10px auto;
+  h2 {
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+  }
+  .currency-full-width {
+    margin-right: 5px;
+  }
+  .mat-button {
+    height: 40px;
+    margin: 0 5px;
+  }
+  .form-currency {
+    display: flex;
+    justify-content: center;
+  }
+}

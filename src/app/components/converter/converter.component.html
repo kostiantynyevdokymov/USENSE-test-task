@@ -1,0 +1,57 @@
+<div class="container-converter">
+  <h2>Currency Exchange</h2>
+  <form *ngIf="currencyForm" [formGroup]="currencyForm" class="form-currency">
+    <mat-form-field class="currency-full-width" appearance="outline">
+      <mat-label>Input amount</mat-label>
+      <input
+        formControlName="firstInput"
+        (input)="directConversion()"
+        matInput
+        type="number"
+        [value]="firstInput"
+        min="0.01"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a currency</mat-label>
+      <mat-select
+        (selectionChange)="directConversion()"
+        formControlName="firstSelect"
+      >
+        <mat-option [value]="option" *ngFor="let option of currency">{{
+          option
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      (click)="inverseCurrency()"
+      class="mat-button"
+      mat-button
+      color="primary"
+    >
+      <mat-icon>swap_horizontal</mat-icon>
+    </button>
+
+    <mat-form-field class="currency-full-width" appearance="outline">
+      <mat-label>Input amount</mat-label>
+      <input
+        (input)="reverseConversion()"
+        formControlName="secondInput"
+        matInput
+        type="number"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a currency</mat-label>
+      <mat-select
+        (selectionChange)="reverseConversion()"
+        formControlName="secondSelect"
+      >
+        <mat-option [value]="option" *ngFor="let option of currency">{{
+          option
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>

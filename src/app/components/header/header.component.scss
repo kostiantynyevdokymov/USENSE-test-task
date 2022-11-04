@@ -4,35 +4,32 @@ mat-toolbar {
   box-shadow: 0px 3px 6px 0px;
   display: flex;
   justify-content: center;
-  color: black;
-  .container {
-    width: 1200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  color: white;
 
-    .header-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
       font-size: 20px;
     }
-    .header-currency {
+  }
+  .header-currency {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    .currency {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
-      .currency {
-        display: flex;
-        min-width: 400px;
-        .euro-currency {
-          margin-right: 15px;
-        }
+      min-width: 400px;
+      .euro-currency {
+        margin-right: 15px;
       }
-      img {
-        width: 30px;
-        margin-right: 6px;
-      }
+    }
+    img {
+      width: 30px;
+      margin-right: 6px;
+      display: flex;
     }
   }
 }
