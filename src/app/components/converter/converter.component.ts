@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { first } from 'rxjs';
-import { CurrencyService } from '../currency.service';
+import { CurrencyService } from '../../shared/service/currency.service';
 @Component({
   selector: 'app-converter',
   templateUrl: './converter.component.html',
@@ -12,7 +12,7 @@ export class ConverterComponent implements OnInit {
     private currencyService: CurrencyService,
     private formBuilder: FormBuilder
   ) {}
-  currency: string[] = this.currencyService.currency;
+  currencyList: string[] = this.currencyService.currencyList;
   rate: any;
   firstInput: any;
   secondInput: any;
@@ -24,9 +24,8 @@ export class ConverterComponent implements OnInit {
       .getExchangeRate()
       .pipe(first())
       .subscribe((data) => {
-        this.rate = data;
-        this.rates.EUR = this.rate[0].buy;
-        this.rates.USD = this.rate[1].buy;
+        this.rates.EUR = data[0].buy;
+        this.rates.USD = data[1].buy;
 
         this.currencyForm?.patchValue({
           secondInput: [Number(data[0].buy).toFixed(2)],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs';
-import { CurrencyService } from '../currency.service';
+import { first, tap } from 'rxjs';
+import { CurrencyService } from '../../../shared/service/currency.service';
 import { Rate } from 'src/app/shared/interface/rate';
 @Component({
   selector: 'app-header',
@@ -10,16 +10,16 @@ import { Rate } from 'src/app/shared/interface/rate';
 export class HeaderComponent implements OnInit {
   usd?: Rate;
   eur?: Rate;
+  date: Date = new Date();
   constructor(private currencyService: CurrencyService) {}
   ngOnInit() {
     this.currencyService
       .getExchangeRate()
       .pipe(first())
       .subscribe((rates) => {
-        console.log(rates);
-
         rates.forEach((rate: any) => {
-          this.currencyService.currency.push(rate.ccy);
+          console.log(rate);
+          this.currencyService.currencyList.push(rate.ccy);
           if (rate.ccy === 'EUR') {
             this.eur = {
               buy: Number(rate.buy).toFixed(2),

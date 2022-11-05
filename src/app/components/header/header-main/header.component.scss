@@ -21,17 +21,8 @@ mat-toolbar {
     justify-content: space-between;
     font-size: 14px;
     color: black;
-    .currency {
-      display: flex;
-      min-width: 400px;
-      .euro-currency {
-        margin-right: 15px;
-      }
-    }
-    img {
-      width: 30px;
-      margin-right: 6px;
-      display: flex;
+    :first-child {
+      margin-right: 32px;
     }
   }
 }

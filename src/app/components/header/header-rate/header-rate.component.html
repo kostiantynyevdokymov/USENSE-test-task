@@ -1,0 +1,13 @@
+<div class="currency">
+  <div class="euro">
+    <img src="../../../../assets/{{ img }}" alt="currency-logo" />
+  </div>
+  <div *ngIf="currency" class="currency-rate">
+    <div class="currency-buy">
+      <span class="buy">Buy:</span>{{ currency.buy }}
+    </div>
+    <div class="currency-sale">
+      <span class="sale">Sale:</span>{{ currency.sale }}
+    </div>
+  </div>
+</div>

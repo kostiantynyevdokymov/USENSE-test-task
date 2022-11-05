@@ -1,0 +1,12 @@
+<mat-toolbar>
+  <div class="container">
+    <h1 class="header-title">Exchange rate</h1>
+    <div class="header-currency">
+      <app-header-rate [currency]="eur" [img]="'EUFlag.jpeg'"></app-header-rate>
+      <app-header-rate
+        [currency]="usd"
+        [img]="'USAflag.jpeg'"
+      ></app-header-rate>
+    </div>
+  </div>
+</mat-toolbar>
