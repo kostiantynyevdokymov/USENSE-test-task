@@ -1,4 +1,4 @@
 <app-header></app-header>
 <app-converter></app-converter>
-
+<mat-spinner color="primacy" *ngIf="loading$ | async"></mat-spinner>
 <router-outlet></router-outlet>

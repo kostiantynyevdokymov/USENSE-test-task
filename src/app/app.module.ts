@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { LoaderInterceptorProvider } from './interceptors/loader.interceptor';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -40,8 +42,9 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatButtonModule,
     HeaderRateComponent,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [LoaderInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
