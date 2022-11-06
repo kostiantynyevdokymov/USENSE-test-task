@@ -13,9 +13,7 @@ export class ConverterComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
   currencyList: string[] = this.currencyService.currencyList;
-  rate: any;
-  firstInput: any;
-  secondInput: any;
+
   currencyForm?: FormGroup;
   rates: any = { USD: 0, EUR: 0 };
 
@@ -34,7 +32,6 @@ export class ConverterComponent implements OnInit {
     this.initForm();
   }
   initForm() {
-    console.log(this.rate);
     this.currencyForm = this.formBuilder.group({
       firstInput: [1],
       firstSelect: ['USD'],

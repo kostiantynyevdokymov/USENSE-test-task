@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { first, tap } from 'rxjs';
 import { CurrencyService } from '../../../shared/service/currency.service';
 import { Rate } from 'src/app/shared/interface/rate';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,14 +12,15 @@ export class HeaderComponent implements OnInit {
   usd?: Rate;
   eur?: Rate;
   date: Date = new Date();
+
   constructor(private currencyService: CurrencyService) {}
+
   ngOnInit() {
     this.currencyService
       .getExchangeRate()
       .pipe(first())
       .subscribe((rates) => {
         rates.forEach((rate: any) => {
-          
           this.currencyService.currencyList.push(rate.ccy);
           if (rate.ccy === 'EUR') {
             this.eur = {

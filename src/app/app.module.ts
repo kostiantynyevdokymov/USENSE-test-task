@@ -41,7 +41,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    HeaderRateComponent,
     MatProgressSpinnerModule,
   ],
   providers: [LoaderInterceptorProvider],

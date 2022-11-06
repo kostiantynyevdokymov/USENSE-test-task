@@ -1,6 +1,6 @@
 <mat-toolbar>
   <div class="container">
-    <h1 class="header-title">Exchange rate</h1>
+    <h1 class="header-title">Exchange rate <span>{{date|date:"dd.MM.yyyy"}}</span></h1>
     <div class="header-currency">
       <app-header-rate [currency]="eur" [img]="'EUFlag.jpeg'"></app-header-rate>
       <app-header-rate

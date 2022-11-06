@@ -10,9 +10,11 @@ mat-toolbar {
     display: flex;
     align-items: center;
     justify-content: center;
-    h1 {
-      font-size: 20px;
-      color: black;
+    font-style: 32px;
+    span {
+      font-size: 16px;
+      padding: 3px;
+      margin-top: 12px;
     }
   }
   .header-currency {
@@ -20,7 +22,7 @@ mat-toolbar {
     align-items: center;
     justify-content: space-between;
     font-size: 14px;
-    color: black;
+
     :first-child {
       margin-right: 32px;
     }
