@@ -16,16 +16,28 @@ export class ConverterComponent implements OnInit {
   currencyList: string[] = this.currencyService.currencyList;
 
   currencyForm?: FormGroup;
-  rates: any = { USD: 0, EUR: 0, BTC: 0 };
+  rates: any = {
+    USD: { buy: 0, sale: 0 },
+    EUR: { buy: 0, sale: 0 },
+    BTC: { buy: 0, sale: 0 },
+  };
 
   ngOnInit() {
     this.currencyService
       .getExchangeRate()
       .pipe(first())
       .subscribe((data) => {
-        this.rates.USD = data[0].buy;
-        this.rates.EUR = data[1].buy;
-        this.rates.BTC = data[2].buy * data[0].buy;
+        //console.log(data);
+
+        data.forEach((e: any) => {
+          this.rates[e.ccy].buy = e.buy;
+          this.rates[e.ccy].sale = e.sale;
+        });
+        console.log(this.rates);
+
+        // this.rates.USD = data[0].buy;
+        // this.rates.EUR = data[1].buy;
+        // this.rates.BTC = data[2].buy * data[0].buy;
 
         this.currencyForm?.patchValue({
           secondInput: [Number(data[0].buy).toFixed(2)],
@@ -54,37 +66,53 @@ export class ConverterComponent implements OnInit {
 
   directConversion() {
     const formValue = this.currencyForm?.value;
-
     if (formValue.secondSelect === 'UAH') {
       this.patchSecondInput(
         this.generateInput(
           formValue.firstInput,
-          this.rates[formValue.firstSelect]
+          this.rates[formValue.firstSelect].buy,
+          1
+        )
+      );
+    } else {
+      this.patchSecondInput(
+        this.generateInput(
+          formValue.firstInput,
+          this.rates[formValue.firstSelect].buy,
+          this.rates[formValue.secondSelect].buy
         )
       );
     }
-    if (formValue.firstSelect === formValue.secondSelect) {
-      this.patchSecondInput(formValue.firstInput);
-    }
-    if (formValue.secondSelect !== 'UAH') {
-      if (formValue.firstSelect === 'UAH') {
-        this.patchSecondInput(
-          this.generateInput(
-            formValue.firstInput,
-            1,
-            this.rates[formValue.secondSelect]
-          )
-        );
-      } else {
-        this.patchSecondInput(
-          this.generateInput(
-            formValue.firstInput,
-            this.rates[formValue.firstSelect],
-            this.rates[formValue.secondSelect]
-          )
-        );
-      }
-    }
+
+    // if (formValue.secondSelect === 'UAH') {
+    //   this.patchSecondInput(
+    //     this.generateInput(
+    //       formValue.firstInput,
+    //       this.rates[formValue.firstSelect].buy
+    //     )
+    //   );
+    // }
+    // if (formValue.firstSelect === formValue.secondSelect) {
+    //   this.patchSecondInput(formValue.firstInput);
+    // }
+    // if (formValue.secondSelect !== 'UAH') {
+    //   if (formValue.firstSelect === 'UAH') {
+    //     this.patchSecondInput(
+    //       this.generateInput(
+    //         formValue.firstInput,
+    //         1,
+    //         this.rates[formValue.secondSelect].sale
+    //       )
+    //     );
+    //   } else {
+    //     this.patchSecondInput(
+    //       this.generateInput(
+    //         formValue.firstInput,
+    //         this.rates[formValue.firstSelect],
+    //         this.rates[formValue.secondSelect]
+    //       )
+    //     );
+    //   }
   }
 
   reverseConversion() {
@@ -94,7 +122,7 @@ export class ConverterComponent implements OnInit {
       this.patchFirstInput(
         this.generateInput(
           formValue.secondInput,
-          this.rates[formValue.secondSelect]
+          this.rates[formValue.secondSelect].sale
         )
       );
     }
