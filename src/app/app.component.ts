@@ -8,6 +8,6 @@ import { LoadingService } from './shared/service/loading.service';
 })
 export class AppComponent {
   constructor(private loader: LoadingService) {}
-  loading$ = this.loader;
+  loading$ = this.loader.loading$;
   title = 'USENSE-test-task';
 }

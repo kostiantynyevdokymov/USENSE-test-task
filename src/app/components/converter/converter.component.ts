@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { first } from 'rxjs';
 import { CurrencyService } from '../../shared/service/currency.service';
+
 @Component({
   selector: 'app-converter',
   templateUrl: './converter.component.html',
@@ -15,15 +16,16 @@ export class ConverterComponent implements OnInit {
   currencyList: string[] = this.currencyService.currencyList;
 
   currencyForm?: FormGroup;
-  rates: any = { USD: 0, EUR: 0 };
+  rates: any = { USD: 0, EUR: 0, BTC: 0 };
 
   ngOnInit() {
     this.currencyService
       .getExchangeRate()
       .pipe(first())
       .subscribe((data) => {
-        this.rates.EUR = data[0].buy;
-        this.rates.USD = data[1].buy;
+        this.rates.USD = data[0].buy;
+        this.rates.EUR = data[1].buy;
+        this.rates.BTC = data[2].buy * data[0].buy;
 
         this.currencyForm?.patchValue({
           secondInput: [Number(data[0].buy).toFixed(2)],
